@@ -1,20 +1,22 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
 
-try{
+try
+{
 	$pdo = new PDO('mysql:host=localhost;dbname=global', 'root', '');
 }
-catch (PDOException $e){
+catch (PDOException $e)
+{
 	
 	echo "Невозможно подключиться к Базе данных";
 }
 
 
-if(strpos($_SERVER['REQUEST_URI'], '?') === false){
+if(strpos( $_SERVER['REQUEST_URI'], '?' ) === false ){
 	
-$array=[];
+$array = [];
 
-if($_POST['save'])
+if( $_POST['save'] )
 	
 	{
 		// Добавление нового задания
@@ -27,7 +29,7 @@ if($_POST['save'])
 	
 		
 	} 
-	elseif($_POST['change'])
+elseif($_POST['change'])
 	{
 		//Редактирование задания
 		$desc = trim(addslashes($_POST['description']));
@@ -35,11 +37,11 @@ if($_POST['save'])
 		$sql = "UPDATE tasks SET description = ? WHERE id = ? ";
 		$stmt = $pdo ->prepare($sql);
 		$stmt->bindParam(1, $desc, PDO::PARAM_STR);
-		$stmt->bindParam(2, $id, PDO::PARAM_STR);
+		$stmt->bindParam(2, $id, PDO::PARAM_INT);
 		$stmt->execute();
 		header('Location:'.$_SERVER['PHP_SELF']);
 	}
-	elseif($_POST['sort'])
+elseif($_POST['sort'])
 	{
 		// Сортировка заданий по заданным полям
 		$data = $_POST['sort_by'];
@@ -51,7 +53,7 @@ if($_POST['save'])
 		
 		
 	}
-	else
+else
 	{
 		// Вывод заданий по умолчанию
 		$query = "SELECT * FROM tasks";
@@ -67,7 +69,8 @@ if($_POST['save'])
 	$action = trim(addslashes($_GET['action']));
 	$id = trim(addslashes($_GET['id']));
 	
-	switch($action){
+	switch($action)
+	{
 		
 		case "delete": 
 						$sql = "DELETE FROM tasks WHERE id = :id";
