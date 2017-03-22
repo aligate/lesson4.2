@@ -2,11 +2,9 @@
   <head>
     <meta charset="utf-8">
     <title>Редактирование</title>
-    
   </head>
   <body>
-
-    <h2>Редактирование заданий</h2>
+	<h2>Редактирование заданий</h2>
 
    <form action = "tasks.php" method = 'POST'>
 		<input type ='text' name='description' size = '50' value ='<?= htmlspecialchars($array['description']); ?>' >
