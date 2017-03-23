@@ -16,7 +16,7 @@ if(strpos( $_SERVER['REQUEST_URI'], '?' ) === false ){
 	
 $array = [];
 
-if( $_POST['save'] )
+if( isset($_POST['save']) )
 	
 	{
 		// Добавление нового задания
@@ -29,7 +29,7 @@ if( $_POST['save'] )
 	
 		
 	} 
-elseif($_POST['change'])
+elseif( isset($_POST['change']) )
 	{
 		//Редактирование задания
 		$desc = trim(addslashes($_POST['description']));
@@ -43,7 +43,7 @@ elseif($_POST['change'])
 		$stmt->execute();
 		header('Location:'.$_SERVER['PHP_SELF']);
 	}
-elseif($_POST['sort'])
+elseif( isset($_POST['sort']) )
 	{
 		// Сортировка заданий по заданным полям
 		$data = $_POST['sort_by'];
