@@ -34,10 +34,12 @@ elseif($_POST['change'])
 		//Редактирование задания
 		$desc = trim(addslashes($_POST['description']));
 		$id = $_POST['id'];
-		$sql = "UPDATE tasks SET description = ? WHERE id = ? ";
+		$is_done = $_POST['is_done'];
+		$sql = "UPDATE tasks SET description = ?, is_done = ? WHERE id = ? ";
 		$stmt = $pdo ->prepare($sql);
 		$stmt->bindParam(1, $desc, PDO::PARAM_STR);
-		$stmt->bindParam(2, $id, PDO::PARAM_INT);
+		$stmt->bindParam(2, $is_done, PDO::PARAM_STR);
+		$stmt->bindParam(3, $id, PDO::PARAM_STR);
 		$stmt->execute();
 		header('Location:'.$_SERVER['PHP_SELF']);
 	}
