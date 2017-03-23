@@ -11,11 +11,10 @@ catch (PDOException $e)
 	echo "Невозможно подключиться к Базе данных";
 }
 
+$array = [];
 
 if(strpos( $_SERVER['REQUEST_URI'], '?' ) === false ){
 	
-$array = [];
-
 if( isset($_POST['save']) )
 	
 	{
