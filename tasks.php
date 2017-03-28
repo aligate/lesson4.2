@@ -13,7 +13,7 @@ catch (PDOException $e)
 
 $array = [];
 
-if(strpos( $_SERVER['REQUEST_URI'], '?' ) === false ){
+if(empty($_GET)){
 	
 if( isset($_POST['save']) )
 	
@@ -66,7 +66,7 @@ else
 	}
 	
 }	
-		
+	elseif(isset($_GET)){	
 	$action = trim(addslashes($_GET['action']));
 	$id = trim(addslashes($_GET['id']));
 	
@@ -98,7 +98,7 @@ else
 						break;
 		
 	}
-
+}
 ?>
 
 
