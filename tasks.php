@@ -66,7 +66,7 @@ else
 	}
 	
 }	
-	elseif(isset($_GET)){	
+	else {	
 	$action = trim(addslashes($_GET['action']));
 	$id = trim(addslashes($_GET['id']));
 	
