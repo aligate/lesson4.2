@@ -46,8 +46,8 @@ elseif( isset($_POST['sort']) )
 	{
 		// Сортировка заданий по заданным полям
 		$data = $_POST['sort_by'];
-		$query = "SELECT * FROM tasks ORDER BY {$data}";
-		$stmt = $pdo->query($query);
+		$stmt = $pdo->prepare("SELECT * FROM tasks ORDER BY {$data}");
+		$stmt->execute();
 		$array = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		// Подключаем файл с HTML шаблоном view1.php
 		include_once 'view1.php';
@@ -57,8 +57,9 @@ elseif( isset($_POST['sort']) )
 else
 	{
 		// Вывод заданий по умолчанию
-		$query = "SELECT * FROM tasks";
-		$stmt = $pdo->query($query);
+		
+		$stmt = $pdo->prepare("SELECT * FROM tasks");
+		$stmt->execute();
 		$array = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		// Подключаем файл с HTML шаблоном view1.php
 		include_once 'view1.php';
